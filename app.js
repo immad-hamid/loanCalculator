@@ -5,7 +5,8 @@ form.addEventListener('submit', calculateInterest);
 
 function calculateInterest(e) {
 
-  console.log('Calculating...');
+  // showing the results
+  document.getElementById('results').style.display = 'none';
 
   // input fields
   const amount = document.getElementById('amount');
