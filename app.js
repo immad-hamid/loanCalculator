@@ -23,18 +23,28 @@ function calculateInterest(e) {
 
   // compute monthly payment
   const x = Math.pow(1 + calculatedInterest, calculatedPayments);
-  const monthly = (principle * x * calculatedInterest)/(x - 1);
+  const monthly = (principle * x * calculatedInterest) / (x - 1);
 
   if (isFinite(monthly)) {
     monthlyPayment.value = monthly.toFixed(2);
     totalPayment.value = (monthly * calculatedPayments).toFixed(2);
     totalInterest.value = ((monthly * calculatedPayments) - principle).toFixed(2);
+    // showing loader
+    document.getElementById('loading').style.display = 'block';
+    // showing loader for 2000 and then calling a method to show actual results and hide the loader back again
+    setTimeout(showResults, 2000);
   } else {
-    console.log('Check your numbers');
     showErrors('Check your numbers');
   }
 
   e.preventDefault();  
+}
+
+function showResults() {
+  // hiding the loader
+  document.getElementById('loading').style.display = 'none';
+  // showing the results
+  document.getElementById('results').style.display = 'block';
 }
 
 function showErrors(error) {
